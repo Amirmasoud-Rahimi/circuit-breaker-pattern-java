@@ -2,11 +2,7 @@ package com.project.userservice.model;
 
 import lombok.*;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class SuccessResponse implements Response {
     private String name;
     private String username;

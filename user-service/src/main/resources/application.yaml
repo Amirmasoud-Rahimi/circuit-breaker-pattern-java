@@ -23,34 +23,32 @@ spring:
   profiles:
     active: h2
 management:
-    endpoint:
-      health:
-        show-details: always
-    endpoints:
-      web:
-        exposure:
-          include: health
+  endpoint:
     health:
-      circuitbreakers:
-        enabled: true
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health
+  health:
+    circuitbreakers:
+      enabled: true
 resilience4j:
-    circuitbreaker:
-      instances:
-        user-service:
-          register-health-indicator: true # Useful for monitoring the CircuitBreaker's state
-          failure-rate-threshold: 50 # The percentage of failed calls that trigger the CircuitBreaker to open
-          slow-call-rate-threshold: 5
-          permitted-number-of-calls-in-half-open-state: 3
-          max-wait-duration-in-half-open-state:
-            seconds: 60
-          sliding-window-type: COUNT_BASED # Determines how the sliding window tracks calls
-          sliding-window-size: 10 # Number of calls tracked in the sliding window
-          minimum-number-of-calls: 5 #required before the CircuitBreaker can open or close
-          wait-duration-in-open-state: 30s # The time that the CircuitBreaker should wait before transitioning from open to half-open.
-          automatic-transition-from-open-to-half-open-enabled: true
-          record-exceptions:
-            - java.lang.Throwable
-          ignore-exceptions:
-            - jakarta.persistence.EntityNotFoundException
-          #record-failure-predicate:
-          #ignore-exception-predicate:
+  circuitbreaker:
+    instances:
+      user-service:
+        register-health-indicator: true # Useful for monitoring the CircuitBreaker's state
+        failure-rate-threshold: 50 # The percentage of failed calls that trigger the CircuitBreaker to open
+        slow-call-rate-threshold: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        max-wait-duration-in-half-open-state:
+          seconds: 60
+        sliding-window-type: COUNT_BASED # Determines how the sliding window tracks calls
+        sliding-window-size: 10 # Number of calls tracked in the sliding window
+        minimum-number-of-calls: 5 #required before the CircuitBreaker can open or close
+        wait-duration-in-open-state: 30s # The time that the CircuitBreaker should wait before transitioning from open to half-open.
+        automatic-transition-from-open-to-half-open-enabled: true
+        record-exceptions:
+          - java.lang.Throwable
+        ignore-exceptions:
+          - jakarta.persistence.EntityNotFoundException
