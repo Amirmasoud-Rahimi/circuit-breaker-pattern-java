@@ -89,6 +89,7 @@ resilience4j Configuration:
 - The `post-service` is accessible via <http://localhost:7070>
 - H2 in-memory database console is accessible vai "http://localhost:7070/h2-console"
 - Use *username* as **post** and *password* as **1234** to log in to h2-console
+- datasource url: jdbc:h2:mem:post-db
  
  **User-Service**
 - Navigate to `user-service` Project Directory
@@ -98,6 +99,7 @@ resilience4j Configuration:
 - H2 in-memory database console is accessible vai <http://localhost:9090/h2-console>
 - Access <http://localhost:1010/actuator/health> to view Circuit Breaker details
 - Use *username* as **user** and *password* as **1234** to log in to h2-console
+- datasource url: jdbc:h2:mem:user-db
 
 ## Usage
 This is a sample project to show circiute breaker pattern concepts. We have two microservices (`post-service` , `user-service`) that are monitoring using resilence4j and we want to see how circuit breaker pattern can monitor and manage service requests to handle failures and prevent cascading failure. `post-service` recieves *userId* and returns the Post Entity that is related to User. and `user-service` recieves a *user id* and returns User entity with Post entity details.
