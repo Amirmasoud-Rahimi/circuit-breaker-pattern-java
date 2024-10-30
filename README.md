@@ -15,6 +15,7 @@
 
 ##### What is the Circuit Breaker Pattern in Microservices?
 The Circuit Breaker pattern is like the superhero of fault tolerance in distributed systems. Imagine it as the vigilant guardian that stands between your services, preventing catastrophic failures and maintaining system stability. Here’s how it works:
+
   **1. Monitoring and Control:** The Circuit Breaker dynamically watches interactions between services. When it detects issues—like a service misbehaving or failing—it steps in.
 
  **2. Thresholds and Intervention:** If a service starts acting up (maybe it’s slow, throwing errors, or just having a bad day), the Circuit Breaker sets thresholds. If those thresholds are crossed, it temporarily interrupts requests to that service. Think of it as a timeout for unruly behavior.
@@ -163,6 +164,7 @@ Let's break down the properties related to circuit breakers in Spring Boot Actua
 Remember that these properties help you monitor and manage the resilience of your microservices. Adjust them based on your application's behavior and requirements.
 ### Circuit Breaker Challenging
 Both services are running already.
+
 1-Call `user-service` API 2 times <http://localhost:9090/user?userId=1>, then refresh the actuator link <http://localhost:1010/actuator/health>, we will see the change.now *bufferedCalls* is 3 .
 
 2-Turn down post-service, call user-service API 4 times , then refresh the actuator link , we will notice now Circuit Breaker was triggered. the reason is that “failureRate” is now greater than “failure-rate-threshold”.
