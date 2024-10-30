@@ -30,7 +30,7 @@ public class UserService {
     @CircuitBreaker(name = SERVICE_NAME, fallbackMethod = "fallbackMethod")
     public Response getUserByUserId(Integer userId) {
         SuccessResponse response = new SuccessResponse();
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User Not Found: " + userId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User Not Found with userId= : " + userId));
         ResponseEntity<PostDto> postApiResponse = callPostApi(userId);
         setSuccessResponse(postApiResponse.getBody(), response, user);
         return response;
